@@ -34,8 +34,14 @@ const Feed = () => {
   }, []);
 
   const filterPrompts = (searchtext) => {
-    const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
-    return allPosts.filter((item) => regex.test(item.creator.username) || regex.test(item.tag) || regex.test(item.prompt));
+    let filteredPosts = [];
+    const searchedWords = searchtext.trim().split(" ");
+    searchedWords.map((word) => {
+      const regex = new RegExp(word, "i"); // 'i' flag for case-insensitive search
+      let getPosts = allPosts.filter((item) => regex.test(item.creator.username) || regex.test(item.tag) || regex.test(item.prompt));
+      filteredPosts.push(...getPosts);
+    });
+    return filteredPosts;
   };
 
   const handleSearchChange = (e) => {
