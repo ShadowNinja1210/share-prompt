@@ -23,7 +23,7 @@ const CreatePrompt = () => {
         body: JSON.stringify({
           prompt: post.prompt,
           userId: session?.user.id,
-          tag: post.tag.replaceAll("#", "").trim(),
+          tag: post.tag,
         }),
       });
 
