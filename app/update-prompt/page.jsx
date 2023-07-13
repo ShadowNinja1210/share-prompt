@@ -19,7 +19,7 @@ const EditPrompt = () => {
       const data = await response.json();
       setPost({
         prompt: data.prompt,
-        tag: data.tag,
+        tag: data.tag.replace("#", "").trim(),
       });
     };
     if (promptId) getPromptDetails();
